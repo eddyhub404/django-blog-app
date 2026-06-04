@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Environment Variables
+.env
+
+# Django
+db.sqlite3
+media/
+
+# Static Files (collectstatic output)
+staticfiles/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Tailwind / Node
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Python packaging
+*.egg-info/
+.eggs/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Migrations (optional - usually DON'T ignore)
+# */migrations/
+# !*/migrations/__init__.py
