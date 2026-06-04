@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+
+    <h1 class="text-6xl font-bold mb-6">
+        Build. Learn. Share.
+    </h1>
+
+    <p class="text-xl text-gray-600 max-w-2xl mb-8">
+        Explore articles on Django, Python, Web Development,
+        APIs, PostgreSQL and Backend Engineering.
+    </p>
+
+    <a href="#blogs"
+       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+        Read Blogs
+    </a>
+
+</section>
+
+<!-- Featured Blogs -->
+<section id="blogs" class="max-w-7xl mx-auto px-6 py-20">
+
+    <h2 class="text-4xl font-bold text-center mb-12">
+        Featured Articles
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="shadow-lg rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-4">
+                Django ORM Guide
+            </h3>
+            <p class="text-gray-600">
+                Learn how Django ORM works behind the scenes.
+            </p>
+        </div>
+
+        <div class="shadow-lg rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-4">
+                DRF Authentication
+            </h3>
+            <p class="text-gray-600">
+                JWT authentication with Django Rest Framework.
+            </p>
+        </div>
+
+        <div class="shadow-lg rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-4">
+                PostgreSQL Basics
+            </h3>
+            <p class="text-gray-600">
+                Understand joins, relations and indexing.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
