@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-10">
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" class="w-full h-96 object-cover rounded-xl mb-6">
+    {% endif %}
+
+    <h1 class="text-4xl font-bold mb-3">{{ post.title }}</h1>
+
+    <p class="text-gray-500 mb-6">
+        By {{ post.author.username }} |
+        {{ post.category.name }} |
+        {{ post.created_at|date:"d M Y" }}
+    </p>
+
+    <p class="text-lg leading-8">
+        {{ post.content|linebreaks }}
+    </p>
+
+</div>
+{% endblock %}

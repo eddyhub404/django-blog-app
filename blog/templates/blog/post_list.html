@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-6xl mx-auto px-6 py-10">
+
+    <h1 class="text-4xl font-bold mb-10">
+        Latest Blog Posts
+    </h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        {% for post in posts %}
+
+            <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-xl transition duration-300">
+
+                {% if post.image %}
+                    <img src="{{ post.image.url }}"
+                         alt="{{ post.title }}"
+                         class="w-full h-56 object-cover rounded-lg mb-4">
+                {% endif %}
+
+                <h2 class="text-2xl font-extrabold mb-2 text-gray-900">
+                    {{ post.title }}
+                </h2>
+
+                <p class="text-sm text-gray-500 mb-3">
+                    By {{ post.author.username }} |
+                    {{ post.category.name }} |
+                    {{ post.created_at|date:"d M Y" }}
+                </p>
+
+                <p class="text-gray-700 mb-4">
+                    {{ post.content|truncatewords:10 }}
+                </p>
+
+                <a href="{{ post.get_absolute_url }}"
+                   class="inline-block mt-4 text-blue-600 font-semibold hover:text-blue-800">
+                    Read More →
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <h2>No Posts Found</h2>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% comment %} Pagination {% endcomment %}
+
+{% if page_obj.has_other_pages %}
+
+<div class="flex justify-center mt-10 space-x-2">
+
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"
+           class="px-4 py-2 bg-gray-200 rounded">
+            Previous
+        </a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+
+            <span class="px-4 py-2 bg-blue-600 text-white rounded">
+                {{ num }}
+            </span>
+
+        {% else %}
+
+            <a href="?page={{ num }}"
+               class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                {{ num }}
+            </a>
+
+        {% endif %}
+
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"
+           class="px-4 py-2 bg-gray-200 rounded">
+            Next
+        </a>
+    {% endif %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}
