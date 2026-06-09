@@ -2,7 +2,34 @@
 
 {% block content %}
 
+
 <div class="max-w-6xl mx-auto px-6 py-10">
+    <form method="GET" class="mb-8 flex gap-2">
+
+    <input
+        type="text"
+        name="q"
+        value="{{ request.GET.q }}"
+        placeholder="Search posts..."
+        class="flex-1 border rounded-lg px-4 py-2"
+    >
+
+<select name="category" onchange="this.form.submit()" class="px-4 py-2 border rounded-lg">
+
+    <option value="" {% if not request.GET.category %}selected{% endif %}>
+        All Categories
+    </option>
+
+    {% for cat in categories %}
+        <option value="{{ cat.slug }}"
+            {% if request.GET.category == cat.slug %}selected{% endif %}>
+            {{ cat.name }}
+        </option>
+    {% endfor %}
+
+</select>
+
+</form>
 
     <h1 class="text-4xl font-bold mb-10">
         Latest Blog Posts
