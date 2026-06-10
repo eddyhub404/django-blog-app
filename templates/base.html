@@ -8,9 +8,11 @@
     <title>Document</title>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-sky-200">
-      {% include 'navbar.html' %}
+      {% include 'includes/navbar.html' %}
+      {% include 'includes/messages.html' %}
     {% block content %}
     {% endblock %}
-     {% include 'footer.html' %}
+     {% include 'includes/footer.html' %}
+     
 </body>
 </html>

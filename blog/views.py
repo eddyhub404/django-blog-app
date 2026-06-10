@@ -4,6 +4,7 @@ from .models import Post, Category, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
+from django.contrib import messages
 
 
 class PostListView(ListView):
@@ -73,8 +74,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_confirm_delete.html'
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('blog:post_list')
     login_url = reverse_lazy('login')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Post deleted successfully.')
+        return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()

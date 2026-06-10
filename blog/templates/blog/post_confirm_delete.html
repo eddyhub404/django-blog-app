@@ -1,6 +1,33 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Delete Post</h1>
+<div class="max-w-2xl mx-auto px-6 py-10">
 
+    <h1 class="text-3xl font-bold text-red-600 mb-4">
+        Delete Post
+    </h1>
+
+    <p class="mb-6">
+        Are you sure you want to delete
+        <strong>"{{ object.title }}"</strong>?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button
+            type="submit"
+            class="bg-red-600 text-white px-4 py-2 rounded-lg"
+        >
+            Yes, Delete
+        </button>
+
+        <a href="{{ object.get_absolute_url }}"
+           class="ml-4 px-4 py-2 bg-gray-300 rounded-lg">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
 {% endblock %}

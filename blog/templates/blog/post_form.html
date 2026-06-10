@@ -1,6 +1,18 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Create Post</h1>
+<div class="max-w-2xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-6">
+        {% if object %}Edit Post{% else %}Create Post{% endif %}
+    </h1>
 
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="px-5 py-2 bg-black text-white rounded-lg">
+            Save
+        </button>
+    </form>
+</div>
 {% endblock %}

@@ -19,5 +19,19 @@
         {{ post.content|linebreaks }}
     </p>
 
+    {% if request.user == post.author %}
+    <div class="flex gap-4 mt-6">
+        <a href="{% url 'blog:post_update' post.slug %}"
+           class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+            Edit
+        </a>
+
+        <a href="{% url 'blog:post_delete' post.slug %}"
+           class="px-4 py-2 bg-red-600 text-white rounded-lg">
+            Delete
+        </a>
+    </div>
+{% endif %}
+
 </div>
 {% endblock %}
