@@ -16,6 +16,6 @@ class CategoryAdmin(admin.ModelAdmin):
     
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'post', 'is_active']
-    list_filter = ['is_active']
-    search_fields = ['name', 'email', 'body']
+    list_display = ['user', 'post', 'is_active', 'created_at']
+    list_filter = ['is_active', 'created_at']
+    search_fields = ['user__username', 'post__title', 'body']

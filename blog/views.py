@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
+from .forms import CommentForm
 
 
 class PostListView(ListView):
@@ -43,6 +44,25 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['comments'] = post.comments.filter(is_active=True)
+        context['comment_form'] = CommentForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        post = self.get_object()
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            
+            return redirect(post.get_absolute_url())
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -53,6 +73,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.success(self.request, 'Post created successfully.')
         return super().form_valid(form)
 
 
@@ -64,6 +85,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.success(self.request, 'Post updated successfully.')
         return super().form_valid(form)
 
     def test_func(self):
