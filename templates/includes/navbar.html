@@ -13,6 +13,14 @@
           Create Post
         </a>
       {% endif %}
+{% if user.is_authenticated %}
+    <span>{{ user.username }}</span>
+    <a href="{% url 'accounts:logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:register' %}">Register</a>
+{% endif %}
+      
 
       <a href="#" class="hover:text-gray-300">About</a>
       <a href="#" class="hover:text-gray-300">Contact</a>

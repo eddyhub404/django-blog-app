@@ -1,7 +1,14 @@
 from django.shortcuts import render
-from django.views import View as DjangoView
+from blog.models import Post, Category
 
+def home(request):
+    latest_posts = Post.objects.filter(
+        is_published=True
+    ).order_by('-created_at')[:3]
 
-class HomeView(DjangoView):
-    def get(self, request):
-        return render(request, 'core/home.html')
+    categories = Category.objects.all()
+
+    return render(request, 'core/home.html', {
+        'latest_posts': latest_posts,
+        'categories': categories
+    })

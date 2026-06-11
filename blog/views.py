@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 
 class PostListView(ListView):
@@ -68,7 +68,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'blog/post_form.html'
-    fields = ['title', 'category', 'content', 'image', 'is_published']
+    form_class = PostForm
     login_url = reverse_lazy('login')
 
     def form_valid(self, form):
@@ -80,7 +80,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     template_name = 'blog/post_form.html'
-    fields = ['title', 'category', 'content', 'image', 'is_published']
+    form_class = PostForm
     login_url = reverse_lazy('login')
 
     def form_valid(self, form):
@@ -96,6 +96,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_confirm_delete.html'
+    
     success_url = reverse_lazy('blog:post_list')
     login_url = reverse_lazy('login')
     
