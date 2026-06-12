@@ -1,15 +1,17 @@
 {% if messages %}
+<div class="fixed top-24 left-1/2 -translate-x-1/2 z-50">
     {% for message in messages %}
-        <div class="message-alert max-w-4xl mx-auto mt-4 p-4 rounded-lg bg-green-100 text-green-800 shadow">
-            {{ message }}
-        </div>
+    <div class="message-alert bg-green-100 text-green-700 px-6 py-3 rounded-lg shadow-lg">
+        {{ message }}
+    </div>
     {% endfor %}
-    <script>
-        setTimeout(function () {
-            let messages = document.querySelectorAll('.message-alert');
-            messages.forEach(function (message) {
-                message.style.display = 'none';
-            });
-        }, 3000);
-    </script>
+</div>
+
+<script>
+    setTimeout(function () {
+        document.querySelectorAll('.message-alert').forEach(function (message) {
+            message.remove();
+        });
+    }, 3000);
+</script>
 {% endif %}

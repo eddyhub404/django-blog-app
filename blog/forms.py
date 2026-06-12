@@ -20,9 +20,9 @@ class PostForm(forms.ModelForm):
 
             elif name == 'content':
                 field.widget.attrs.update({
-                    'class': 'w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-800',
-                    'rows': 8
-                })
+    'class': 'w-full border border-slate-600 bg-slate-900 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500',
+    'rows': 8
+})
 
             else:
                 field.widget.attrs.update({

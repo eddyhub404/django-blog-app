@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<section class="py-20 text-center px-6">
-    <h1 class="text-6xl font-bold mb-6">Build. Learn. Share.</h1>
+<div class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+<section class="pt-30 pb-25 text-center px-6">
+    <h1 class="text-7xl font-extrabold mb-6">
+    Build. Learn. <span class="text-blue-400">Share.</span>
+</h1>
 
     <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
         Explore Django, Python, APIs, PostgreSQL and Backend Development.
@@ -21,9 +23,9 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {% for post in latest_posts %}
             <a href="{{ post.get_absolute_url }}"
-               class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                <h3 class="text-2xl font-bold mb-3">{{ post.title }}</h3>
-                <p class="text-gray-600">{{ post.content|truncatewords:18 }}</p>
+               class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 hover:border-blue-500 hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-300">
+                <h3 class="text-2xl font-extrabold text-white mb-3">{{ post.title }}</h3>
+                <p class="text-gray-300">{{ post.content|truncatewords:18 }}</p>
             </a>
         {% empty %}
             <p class="text-center text-gray-500 col-span-3">No posts yet.</p>
@@ -37,11 +39,11 @@
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
         {% for category in categories %}
             <a href="{% url 'blog:post_list' %}?category={{ category.slug }}"
-               class="bg-white px-5 py-2 rounded-full shadow hover:shadow-md">
+               class="bg-slate-800 text-white px-5 py-2 rounded-full shadow hover:bg-blue-600">
                 {{ category.name }}
             </a>
         {% endfor %}
     </div>
 </section>
-
+</div>
 {% endblock %}
