@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
+
+    <div style="max-width:600px;margin:40px auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+
+        <div style="background:#2563eb;padding:30px;text-align:center;">
+            <h1 style="color:white;margin:0;">
+                Welcome to EddyBlog 🚀
+            </h1>
+        </div>
+
+        <div style="padding:40px;">
+
+            <h2 style="color:#111827;">
+                Hi {{ user.username }},
+            </h2>
+
+            <p style="color:#4b5563;line-height:1.8;">
+                Thank you for joining EddyBlog. Your account has been created successfully.
+            </p>
+
+            <div style="background:#eff6ff;border-left:5px solid #2563eb;padding:15px;margin:25px 0;">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+
+            <p style="color:#4b5563;line-height:1.8;">
+                You can now explore blogs, leave comments, and stay updated with new content.
+            </p>
+
+            <div style="text-align:center;margin-top:35px;">
+                <a href="http://127.0.0.1:8000/"
+                   style="background:#2563eb;color:white;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:bold;">
+                    Visit Website
+                </a>
+            </div>
+
+        </div>
+
+        <div style="background:#f9fafb;padding:20px;text-align:center;color:#6b7280;font-size:14px;">
+            © 2026 EddyBlog. All Rights Reserved.
+        </div>
+
+    </div>
+
+</body>
+</html>

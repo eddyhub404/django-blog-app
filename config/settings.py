@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'core',
 ]
 
@@ -127,3 +127,14 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # Media files (Uploaded by users)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Email Setting
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'sharma.adesh019@gmail.com'
+EMAIL_HOST_PASSWORD = 'gisy bglx bkrc abch'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

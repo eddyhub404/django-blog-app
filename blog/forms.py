@@ -35,10 +35,10 @@ class CommentForm(forms.ModelForm):
         fields = ['body']
         
         widgets = {
-            'body': forms.Textarea(attrs={
-                'class': 'w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-800',
-                'rows': 4,
-                'placeholder': 'Write your comment here...'
-            })
-        }
+    'body': forms.Textarea(attrs={
+        'class': 'w-full border border-slate-600 bg-slate-900 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500',
+        'rows': 4,
+        'placeholder': 'Write your comment here...'
+    })
+}
         

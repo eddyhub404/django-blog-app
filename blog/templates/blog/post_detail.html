@@ -27,23 +27,23 @@
     <h2 class="text-3xl font-bold mb-6">Comments</h2>
 
     {% for comment in comments %}
-      <div class="bg-white p-4 rounded-lg shadow mb-4">
+      <div class="bg-slate-900/80 border border-slate-100 rounded-xl p-5 mb-5">
         <div class="flex justify-between items-center mb-2">
-          <strong class="text-gray-900">{{ comment.user.username }}</strong>
+          <strong class="text-gray-100">{{ comment.user.username }}</strong>
 
-          <small class="text-gray-500">{{ comment.created_at|date:'d M Y, h:i A' }}</small>
+          <small class="text-gray-200">{{ comment.created_at|date:'d M Y, h:i A' }}</small>
         </div>
 
-        <p class="text-gray-700">{{ comment.body }}</p>
+        <p class="text-gray-300">{{ comment.body }}</p>
       </div>
     {% empty %}
-      <p class="text-gray-500">No comments yet.</p>
+      <p class="text-gray-200">No comments yet.</p>
     {% endfor %}
 
     <hr class="my-8" />
 
     {% if user.is_authenticated %}
-      <div class="bg-white p-6 rounded-lg shadow">
+      <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-6"">
         <h3 class="text-2xl font-bold mb-4">Leave a Comment</h3>
 
         <form method="POST">
@@ -51,7 +51,12 @@
 
           {{ comment_form.body }}
 
-          <button type="submit" class="mt-4 bg-gray-900 text-white px-5 py-2 rounded hover:bg-gray-700">Post Comment</button>
+          <button
+    type="submit"
+    class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1"
+>
+    Post Comment
+</button>
         </form>
       </div>
     {% else %}
