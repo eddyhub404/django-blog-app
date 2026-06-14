@@ -16,7 +16,7 @@ def send_welcome_mail(sender, instance, created, **kwargs):
             )
 
             email = EmailMultiAlternatives(
-                subject='Welcome to EddyBlog 🎉',
+                subject='Welcome to EddyBlog',
                 body='Welcome to EddyBlog',
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[instance.email],
@@ -26,4 +26,4 @@ def send_welcome_mail(sender, instance, created, **kwargs):
             email.send(fail_silently=False)
 
         except Exception as e:
-            print("Welcome email error:", e)
+            print("WELCOME EMAIL ERROR:", e)
