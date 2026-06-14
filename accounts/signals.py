@@ -9,18 +9,21 @@ from django.conf import settings
 @receiver(post_save, sender=User)
 def send_welcome_mail(sender, instance, created, **kwargs):
     if created and instance.email:
+        try:
+            html_content = render_to_string(
+                'emails/welcome_email.html',
+                {'user': instance}
+            )
 
-        html_content = render_to_string(
-            'emails/welcome_email.html',
-            {'user': instance}
-        )
+            email = EmailMultiAlternatives(
+                subject='Welcome to EddyBlog 🎉',
+                body='Welcome to EddyBlog',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[instance.email],
+            )
 
-        email = EmailMultiAlternatives(
-            subject='Welcome to EddyBlog 🎉',
-            body='Welcome to EddyBlog',
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[instance.email],
-        )
+            email.attach_alternative(html_content, "text/html")
+            email.send(fail_silently=False)
 
-        email.attach_alternative(html_content, "text/html")
-        email.send(fail_silently=False)
+        except Exception as e:
+            print("Welcome email error:", e)
